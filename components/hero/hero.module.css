@@ -7,7 +7,9 @@
   height: 700px;
   padding-top: 436px;
   margin: 0 auto;
-  background-color: blanchedalmond;
+  background-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)),
+    url('../../public/hero-image.jpg');
 }
 .heroTitle {
   font-family: var(--font-family);

@@ -7,6 +7,8 @@
   height: 68px;
   background: var(--badges);
   border-bottom: 1px solid var(--badges);
+  margin: 0 auto;
+  margin-bottom: 4px;
 }
 .logo {
   color: var(--main);
@@ -18,7 +20,23 @@
 .logo-car {
   color: var(--button);
 }
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
 .navLink {
   color: var(--main);
   font-family: var(--font-family);
+}
+.navLink:hover,
+.navLink:focus {
+  color: var(--button);
+}
+.logo_link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 16px;
+  margin-left: 120px;
 }
