@@ -1,0 +1,136 @@
+@import 'modern-normalize/modern-normalize.css';
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --main: #101828;
+  --gray: #8d929a;
+  --gray-light: #dadde1;
+  --badges: #f2f4f7;
+  --inputs: #f7f7f7;
+  --white: #fff;
+  --button: #3470ff;
+  --button-hover: #0b44cd;
+  --light-blue: #00aad4;
+  --bg: #f5f5f5;
+  --dark-blue: #0095ba;
+  --font-family: 'Manrope', sans-serif;
+  --second-family: 'Inter', sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--fz-14);
+  font-weight: var(--fw-regular);
+  line-height: 1.5;
+  color: var(--color-neutral-darkest);
+  background: var(--color-white);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--second-family);
+  color: var(--color-neutral-darkest);
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  color: var(--white);
+  background-color: var(--button);
+  font-weight: 500;
+  font-size: 16px;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.15s ease,
+    box-shadow 0.25s ease;
+}
+button:hover,
+button:focus {
+  background-color: var(--button-hover);
+}
+
+/* Styles for link */
+a {
+  color: var(--color-scheme-text);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition:
+    color 0.25s ease,
+    text-decoration-color 0.25s ease,
+    opacity 0.2s ease;
+}
+
+a:hover,
+a:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+a:active {
+  color: var(--color-scheme-accent);
+}
+
+a[aria-disabled='true'] {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Styles for input */
+input {
+  border: 2px solid var(--opacity-transparent);
+  border-radius: 12px;
+  padding: 8px 12px;
+  background: var(--opacity-neutral-darkest-5);
+  outline: none;
+  line-height: 1.5;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+input:hover {
+  border: 2px solid var(--color-scheme-accent);
+}
+
+input:focus-visible {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--color-scheme-accent);
+}
+
+input::placeholder {
+  color: var(--opacity-neutral-darkest-60);
+}
+
+/* Styles for input */
+textarea {
+  border: 1px solid var(--opacity-transparent);
+  border-radius: 12px;
+  padding: 12px;
+  background: var(--opacity-neutral-darkest-5);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+textarea:hover {
+  border: 2px solid var(--color-scheme-accent);
+}
+
+textarea:focus-visible {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--color-scheme-accent);
+}
+
+textarea::placeholder {
+  color: var(--opacity-neutral-darkest-60);
+}
