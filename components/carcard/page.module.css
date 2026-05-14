@@ -1,0 +1,157 @@
+.carsContainer {
+  margin: 0 auto;
+  width: 1200px;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  width: 100%;
+  margin-bottom: 80px;
+}
+/* card -box  */
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 276px;
+  border-radius: 12px;
+  background: var(--white);
+  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 268px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(18, 20, 23, 0.5) 0%, rgba(18, 20, 23, 0.5) 100%);
+}
+
+.carImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.favoriteBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: transparent;
+  padding: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.heartIcon {
+  fill: transparent;
+  stroke: #fff;
+  transition: all 0.3s ease;
+}
+
+.heartIcon:hover,
+.heartIcon:focus {
+  transform: scale(1.1);
+  stroke: var(--button);
+}
+
+.heartIcon.active {
+  fill: var(--button);
+  stroke: var(--button);
+}
+
+.titlecar {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+  position: relative;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+.model {
+  font-weight: 400;
+  color: var(--button);
+}
+.rentalPrice {
+  position: absolute;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--main);
+  right: 11px;
+}
+.carInfoContainer {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 6px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: var(--gray);
+  margin-bottom: 4px;
+}
+
+.infoItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.infoItem:not(:last-child)::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 16px;
+  background-color: rgba(18, 20, 23, 0.1);
+  margin-left: 6px;
+}
+
+.learnMoreBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  width: 276px;
+  height: 44px;
+  background-color: var(--button);
+  margin-top: 28px;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--white);
+}
+
+.learnMoreBtn:hover,
+.learnMoreBtn:focus {
+  background-color: var(--button-hover);
+}
+
+/* кнопка для завантаження ще 12 авто */
+
+.loadMoreBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--button);
+  background-color: transparent;
+  border-radius: 12px;
+  width: 156px;
+  height: 44px;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+  margin: 0 auto;
+  margin-bottom: 124px;
+}
+.loadMoreBtn:hover,
+.loadMoreBtn:focus {
+  background-color: transparent;
+  border: 1px solid var(--button-hover);
+}

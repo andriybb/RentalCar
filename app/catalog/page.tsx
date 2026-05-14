@@ -1,23 +1,15 @@
-import { getCars } from '@/services/carsApi';
+import CarCard from '@/components/carcard/page';
 import css from './page.module.css';
-import Header from '@/components/header/header';
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
-export default async function CatalogPage() {
-
-  const cars = await getCars();
-
+export default function CatalogPage() {
+  const queryClient = new QueryClient();
   return (
     <>
-      <Header />
-          <div className={css.carsContainer}>
-            {cars.map((car) => (
-              <div key={car.id} className={css.card}>
-                <h3>{car.model}</h3>
-                <p>Year: {car.year}</p>
-                <p>Price: {car.rentalPrice}</p>
-              </div>
-            ))}
-          </div>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <CarCard />
+        <p className={css.footer}>для нижнього відступу на сторінках </p>
+      </HydrationBoundary>
     </>
   );
 }

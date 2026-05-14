@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = process.env.BASE_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;;
 
 export interface Car {
   id: string;
@@ -35,7 +35,16 @@ export interface CarsFilters {
   minMileage?: number;
   maxMileage?: number;
 }
-export async function getCars(): Promise<Car[]> {
-    const { data } = await axios.get(`${BASE_URL}/cars`);
-    return data.cars; 
-  }
+export async function getCars(page: number = 1): Promise<Car[]> {
+  const { data } = await axios.get(`${BASE_URL}/cars`, {
+    params: {
+      page: page,
+      limit: 12,
+    }
+  });
+  return data.cars; 
+}
+export async function getCarById(id: string): Promise<Car> {
+  const { data } = await axios.get(`${BASE_URL}/cars/${id}`);
+  return data; 
+}

@@ -26,8 +26,16 @@
   gap: 32px;
 }
 .navLink {
-  color: var(--main);
   font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  text-align: center;
+  color: var(--main);
+}
+.activeNavLink {
+  color: var(--button);
+  text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.25);
 }
 .navLink:hover,
 .navLink:focus {

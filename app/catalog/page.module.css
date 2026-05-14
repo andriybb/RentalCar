@@ -1,17 +1,4 @@
-.carsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin: 0 auto;
-  width: 1440px;
-}
-
-/* card -box  */
-.card {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  border-radius: 12px;
-  background: var(--white);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+/* для нижнього відступу на сторінках */
+.footer {
+  visibility: hidden;
 }

@@ -1,2 +1,12 @@
 @import url('../css/reset.css');
 @import url('../css/base.css');
+.customToast {
+  background-color: #4657f0 !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  padding: 16px 24px !important;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.2);
+}
