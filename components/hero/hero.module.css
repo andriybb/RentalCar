@@ -33,11 +33,14 @@
   border-radius: 12px;
   width: 276px;
   height: 44px;
-  background: var(--button);
+  background-color: var(--light-blue);
   font-family: var(--font-family);
   font-weight: 600;
   font-size: 16px;
   line-height: 125%;
   padding: 12px 88px;
   color: var(--white);
+}
+.heroButton:hover {
+  background-color: var(--dark-blue);
 }

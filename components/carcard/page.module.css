@@ -1,3 +1,7 @@
+.filterContainer {
+  margin: 0 auto;
+  width: 924px;
+}
 .carsContainer {
   margin: 0 auto;
   width: 1200px;
@@ -13,10 +17,12 @@
 .card {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   width: 276px;
   border-radius: 12px;
+  padding: 16px;
   background: var(--white);
-  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .imageWrapper {
@@ -54,11 +60,11 @@
 .heartIcon:hover,
 .heartIcon:focus {
   transform: scale(1.1);
-  stroke: var(--button);
+  stroke: var(--);
 }
 
 .heartIcon.active {
-  fill: var(--button);
+  fill: var(--dark-blue);
   stroke: var(--button);
 }
 
@@ -72,16 +78,27 @@
   margin-top: 16px;
   margin-bottom: 8px;
 }
+.brandModel {
+  max-width: 200px;
+}
 .model {
   font-weight: 400;
-  color: var(--button);
+  color: var(--dark-blue);
 }
 .rentalPrice {
   position: absolute;
   font-size: 16px;
   font-weight: 500;
   color: var(--main);
+  top: 0px;
   right: 11px;
+}
+.description {
+  width: 100%;
+  height: 52px;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: var(--bg);
 }
 .carInfoContainer {
   display: flex;
@@ -115,9 +132,10 @@
   align-items: center;
   justify-content: center;
   border-radius: 12px;
-  width: 276px;
+  width: 244px;
   height: 44px;
-  background-color: var(--button);
+  margin: 0 auto;
+  background-color: var(--light-blue);
   margin-top: 28px;
   font-family: var(--font-family);
   font-weight: 600;
@@ -128,7 +146,7 @@
 
 .learnMoreBtn:hover,
 .learnMoreBtn:focus {
-  background-color: var(--button-hover);
+  background-color: var(--dark-blue);
 }
 
 /* кнопка для завантаження ще 12 авто */
@@ -137,7 +155,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--button);
+  border: 1px solid var(--light-blue);
   background-color: transparent;
   border-radius: 12px;
   width: 156px;
@@ -153,5 +171,5 @@
 .loadMoreBtn:hover,
 .loadMoreBtn:focus {
   background-color: transparent;
-  border: 1px solid var(--button-hover);
+  border: 1px solid var(--dark-blue);
 }

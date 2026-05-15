@@ -19,7 +19,6 @@ export default function Header() {
         priority
       />
       <nav className={css.nav}>
-        {/* 3. Перевіряємо шлях для кожного посилання прямо в класі */}
         <Link 
           href="/" 
           className={pathname === "/" ? css.activeNavLink : css.navLink}

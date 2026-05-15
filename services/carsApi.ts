@@ -1,5 +1,11 @@
 import axios from 'axios';
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;;
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+export interface CarLocation {
+  country: string;
+  city: string;
+  address: string;
+}
 
 export interface Car {
   id: string;
@@ -9,42 +15,70 @@ export interface Car {
   type: string;
   img: string;
   description: string;
-  fuelConsumption: string;
-  engineSize: string;
-  accessories: string[];
-  functionalities: string[];
+  fuelConsumption: number;   
+  engine: string;            
+  features: string[];        
   rentalPrice: string;
   rentalCompany: string;
-  address: string;
+  location: CarLocation;      
   rentalConditions: string[];
   mileage: number;
+  stockNumber: number;       
+  createdAt: string;          //
+  updatedAt: string;         
 }
 
 export interface CarsResponse {
-    cars: Car[];
-    totalCars: number;
-    page: number;
-    totalPages: number;
-  }
+  cars: Car[];
+}
 
 export interface CarsFilters {
   page?: number;
-  limit?: number;
+  perPage?: number;          
   brand?: string;
-  rentalPrice?: number;
+  price?: number;           
   minMileage?: number;
   maxMileage?: number;
 }
-export async function getCars(page: number = 1): Promise<Car[]> {
+
+export interface BookingPayload {
+  name: string;
+  email: string;
+  comment: string;
+}
+
+export interface FilterMetadata {
+  brands: string[];
+  price: {
+    min: number;
+    max: number;
+  };
+}
+
+
+export async function getCars(page: number = 1, filters?: CarsFilters): Promise<Car[]> {
   const { data } = await axios.get(`${BASE_URL}/cars`, {
     params: {
       page: page,
-      limit: 12,
+      perPage: 12,
+      ...filters, 
     }
   });
+  
   return data.cars; 
 }
+
 export async function getCarById(id: string): Promise<Car> {
   const { data } = await axios.get(`${BASE_URL}/cars/${id}`);
   return data; 
+}
+
+export async function bookCar(carId: string, bookingData: BookingPayload) {
+  const { data } = await axios.post(`${BASE_URL}/cars/${carId}/booking-requests`, bookingData);
+  return data; 
+}
+
+export async function getCarFilters(): Promise<FilterMetadata> {
+  const { data } = await axios.get(`${BASE_URL}/cars/filters`);
+  return data;
 }

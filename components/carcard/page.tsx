@@ -4,13 +4,14 @@ import css from './page.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Loader } from '../loader/page';
-import { Car, getCars } from '@/services/carsApi';
+import { Car, CarsFilters, getCars } from '@/services/carsApi';
 import Link from 'next/link';
 import { useInfiniteQuery } from '@tanstack/react-query'; // Імпортуємо хук
 import toast from 'react-hot-toast';
+import Filter, { FilterValues } from '../filter/page';
 export default function CarCard() {
     const [favorites, setFavorites] = useState<string[]>([]);
-
+    const [activeFilters, setActiveFilters] = useState<CarsFilters>({});
     const toggleFavorite = (carId: string) => {
         const isAlreadyFavorite = favorites.includes(carId);
         if (isAlreadyFavorite) {
@@ -31,15 +32,28 @@ export default function CarCard() {
         isLoading,           
         isError              
     } = useInfiniteQuery({
-        queryKey: ['cars'],
-        queryFn: ({ pageParam }) => getCars(pageParam),
-        initialPageParam: 1, // Початкова сторінка
+        queryKey: ['cars', activeFilters],
+        queryFn: ({ pageParam }) => getCars(pageParam, activeFilters),
+        initialPageParam: 1, 
         getNextPageParam: (lastPage, allPages) => {
             return lastPage.length === 12 ? allPages.length + 1 : undefined;
         },
     });
     const cars = data?.pages.flat() || [];
+    const handleApplyFilters = (newFilters: FilterValues) => {
+        const formattedFilters: CarsFilters = {};
+        
+        if (newFilters.brand) formattedFilters.brand = newFilters.brand;
+        if (newFilters.price) formattedFilters.price = Number(newFilters.price);
+        if (newFilters.minMileage) formattedFilters.minMileage = Number(newFilters.minMileage);
+        if (newFilters.maxMileage) formattedFilters.maxMileage = Number(newFilters.maxMileage);
 
+        setActiveFilters(formattedFilters);
+    };
+
+    const handleClearFilters = () => {
+        setActiveFilters({}); 
+    };
     if (isLoading) return <Loader />;
     if (isError) {
         toast.error('Failed to load cars');
@@ -47,64 +61,73 @@ export default function CarCard() {
     }
 
     return (
-        <div className={css.carsContainer}>
-            <div className={css.cards}>
-                {cars.map((car: Car) => {
-                    const isFavorite = favorites.includes(car.id);
-                    const addressParts = car.address.split(',');
-                    const city = addressParts[1]?.trim();
-                    const country = addressParts[2]?.trim();
-                    const formattedMileage = car.mileage.toLocaleString('en-US').replace(/,/g, ' ');
-
-                    return (
-                        <div key={car.id} className={css.card}>
-                            <div className={css.imageWrapper}>
-                                <Image
-                                    src={car.img}
-                                    alt={car.description}
-                                    className={css.carImage}
-                                    width={276}
-                                    height={268}
-                                />
-                                <div className={css.favoriteBtn} onClick={() => toggleFavorite(car.id)}>
-                                    <svg className={`${css.heartIcon} ${isFavorite ? css.active : ''}`} width="16" height="16">
-                                        <use href="/icons.svg#icon-heart"></use>
-                                    </svg>
+        <>
+            <div className={css.filterContainer}><Filter onSearch={handleApplyFilters} onClear={handleClearFilters} /></div>
+            <div className={css.carsContainer}>
+                <div className={css.cards}>
+                {cars.length > 0 ? (
+                        cars.map((car: Car) => {
+                        const isFavorite = favorites.includes(car.id);
+                        const city = car.location.city;
+                        const country = car.location.country;
+                        const formattedMileage = car.mileage.toLocaleString('en-US').replace(/,/g, ' ');
+    
+                        return (
+                            <div key={car.id} className={css.card}>
+                                <div className={css.imageWrapper}>
+                                    <Image
+                                        src={car.img}
+                                        alt={car.description}
+                                        className={css.carImage}
+                                        width={276}
+                                        height={268}
+                                    />
+                                    <div className={css.favoriteBtn} onClick={() => toggleFavorite(car.id)}>
+                                        <svg className={`${css.heartIcon} ${isFavorite ? css.active : ''}`} width="16" height="16">
+                                            <use href="/icons.svg#icon-heart"></use>
+                                        </svg>
+                                    </div>
                                 </div>
+                                
+                                <h3 className={css.titlecar}>
+                                    <p className={css.brandModel}>{car.brand} <span className={css.model}>{car.model}</span>, {car.year}</p>
+                                    <span className={css.rentalPrice}>${car.rentalPrice}</span>
+                                </h3>
+    
+                                <div className={css.description}>
+                                    <div className={css.carInfoContainer}>
+                                        <span className={css.infoItem}>{city}</span>
+                                        <span className={css.infoItem}>{country}</span>
+                                        <span className={css.infoItem}>{car.rentalCompany}</span>
+                                    </div>
+        
+                                    <div className={css.carInfoContainer}>
+                                        <span className={css.infoItem}>{car.type}</span>
+                                        <span className={css.infoItem}>{formattedMileage} km</span>
+                                    </div>
+                                </div >
+    
+                                <Link href={`/catalog/${car.id}`} className={css.learnMoreBtn}>
+                                    Read more
+                                </Link>
                             </div>
-                            
-                            <h3 className={css.titlecar}>
-                                {car.brand} <span className={css.model}>{car.model}</span>, {car.year}
-                                <span className={css.rentalPrice}>${car.rentalPrice}</span>
-                            </h3>
-
-                            <div className={css.carInfoContainer}>
-                                <span className={css.infoItem}>{city}</span>
-                                <span className={css.infoItem}>{country}</span>
-                                <span className={css.infoItem}>{car.rentalCompany}</span>
-                            </div>
-
-                            <div className={css.carInfoContainer}>
-                                <span className={css.infoItem}>{car.type}</span>
-                                <span className={css.infoItem}>{formattedMileage} km</span>
-                            </div>
-
-                            <Link href={`/catalog/${car.id}`} className={css.learnMoreBtn}>
-                                Read more
-                            </Link>
-                        </div>
-                    );
-                })}
+                        );
+                    })
+                ) : (
+                    // Показуємо повідомлення, якщо фільтр нічого не знайшов
+                    <div className={css.noResults}>No cars found matching your criteria.</div>
+                )}
             </div>
-            {hasNextPage && (
-                <button
-                    className={css.loadMoreBtn}
-                    onClick={() => fetchNextPage()}
-                    disabled={isFetchingNextPage}
-                >
-                    {isFetchingNextPage ? <Loader /> : 'Load more'}
-                </button>
-            )}
-        </div>
+                {hasNextPage && (
+                    <button
+                        className={css.loadMoreBtn}
+                        onClick={() => fetchNextPage()}
+                        disabled={isFetchingNextPage}
+                    >
+                        {isFetchingNextPage ? <Loader /> : 'Load more'}
+                    </button>
+                )}
+            </div>
+        </>
     );
 }

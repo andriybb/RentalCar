@@ -1,15 +1,20 @@
 .pageContainer {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
   display: flex;
-  gap: 40px;
+  gap: 32px;
+  margin: 0 auto;
+  margin-top: 84px;
+  width: 1200px;
+  padding-bottom: 176px;
 }
-
-.imageWrapper {
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.imageCar {
   position: relative;
-  width: 50%;
-  height: 400px;
+  width: 640px;
+  height: 512px;
   border-radius: 14px;
   overflow: hidden;
 }
@@ -18,24 +23,114 @@
   object-fit: cover;
 }
 
-.infoWrapper {
-  width: 50%;
+.rightColumn {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 68px;
+  border-radius: 16px;
+  background: var(--white);
+  padding: 32px 24px;
+  width: 528px;
+}
+.infoTitle {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--black);
+}
+.labelNew {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: baseline;
+}
+.nameCar {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  text-align: left;
+  color: var(--main);
+}
+.article {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--gray);
+}
+.priceLocation {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+  align-items: baseline;
+  margin-top: 8px;
+  margin-bottom: 32px;
 }
-
-.modelBlue {
-  color: #3470ff;
+.location {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
 }
-
+.Icon {
+  width: 16px;
+  height: 16px;
+}
+.price {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--light-blue);
+}
 .description {
-  margin-top: 14px;
-  font-size: 14px;
-  line-height: 20px;
-  color: #121417;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+}
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.section {
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(18, 20, 23, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
-/* для нижнього відступу на сторінках */
-.footer {
-  visibility: hidden;
+.InfoListTitle {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  color: var(--main);
+  text-align: left;
+  margin-bottom: 4px;
+}
+.ListObject {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
 }
