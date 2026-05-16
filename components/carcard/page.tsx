@@ -37,7 +37,7 @@ export default function CarCard() {
     const formattedFilters: CarsFilters = {};
 
     if (newFilters.brand) formattedFilters.brand = newFilters.brand;
-    if (newFilters.price) formattedFilters.price = Number(newFilters.price);
+    if (newFilters.price) formattedFilters.rentalPrice = Number(newFilters.price);
     if (newFilters.minMileage) formattedFilters.minMileage = Number(newFilters.minMileage);
     if (newFilters.maxMileage) formattedFilters.maxMileage = Number(newFilters.maxMileage);
 

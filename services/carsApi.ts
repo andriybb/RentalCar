@@ -36,7 +36,7 @@ export interface CarsFilters {
   page?: number;
   perPage?: number;          
   brand?: string;
-  price?: number;           
+  rentalPrice?: number;           
   minMileage?: number;
   maxMileage?: number;
 }
@@ -49,7 +49,7 @@ export interface BookingPayload {
 
 export interface FilterMetadata {
   brands: string[];
-  price: {
+  rentalPrice: {
     min: number;
     max: number;
   };
