@@ -1,4 +1,4 @@
-.pageContainer {
+.carPersonalContainer {
   display: flex;
   gap: 32px;
   margin: 0 auto;
@@ -17,6 +17,7 @@
   height: 512px;
   border-radius: 14px;
   overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .mainImage {
@@ -30,9 +31,11 @@
   gap: 68px;
   border-radius: 16px;
   background: var(--white);
-  padding: 32px 24px;
+  padding: 24px;
   width: 528px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .infoTitle {
   font-size: 24px;
   font-weight: 500;

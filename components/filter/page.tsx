@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getCarFilters } from '@/services/carsApi';
-import css from './page.module.css';
+
+import css from './page.module.css'; // Або Filter.module.css (залежить від вашої назви)
+import CustomSelect from '../customSelect/page';
 
 export interface FilterValues {
   brand: string;
@@ -18,12 +20,10 @@ interface FilterProps {
 }
 
 export default function Filter({ onSearch, onClear }: FilterProps) {
-
   const [brand, setBrand] = useState('');
   const [price, setPrice] = useState('');
   const [minMileage, setMinMileage] = useState('');
   const [maxMileage, setMaxMileage] = useState('');
-
 
   const { data: filterData, isLoading } = useQuery({
     queryKey: ['carFilters'],
@@ -32,7 +32,7 @@ export default function Filter({ onSearch, onClear }: FilterProps) {
 
   const generatePriceOptions = (min: number, max: number, step = 10) => {
     const options = [];
-    const start = Math.ceil(min / step) * step; 
+    const start = Math.ceil(min / step) * step;
     for (let i = start; i <= max; i += step) {
       options.push(i);
     }
@@ -54,65 +54,54 @@ export default function Filter({ onSearch, onClear }: FilterProps) {
     onClear();
   };
 
+  const hasActiveFilters = brand !== '' || price !== '' || minMileage !== '' || maxMileage !== '';
+
   return (
-    <div className={css.filterContainer}>
-      
-   
+    <section className={css.filterContainer}>
       <div className={css.filterGroup}>
         <label className={css.label}>Car brand</label>
-        <div className={css.selectWrapper}>
-          <select 
-            value={brand} 
-            onChange={(e) => setBrand(e.target.value)}
-            className={css.selectBrand}
-            disabled={isLoading} 
-          >
-            <option value="" disabled hidden>
-              {isLoading ? 'Loading... ' : 'Choose a brand'}
-            </option>
-            {brands.map((b) => (
-              <option key={b} value={b}>{b}</option>
-            ))}
-          </select>
-        </div>
+        <CustomSelect
+          options={brands}
+          value={brand}
+          onChange={setBrand}
+          placeholder={isLoading ? 'Loading...' : 'Choose a brand'}
+          width="204px"
+        />
       </div>
 
-      
       <div className={css.filterGroup}>
         <label className={css.label}>Price/ 1 hour</label>
-        <div className={css.selectWrapper}>
-          <select 
-            value={price} 
-            onChange={(e) => setPrice(e.target.value)}
-            className={css.selectPrice}
-            disabled={isLoading}
-          >
-            <option value="" disabled hidden>
-               {isLoading ? 'Loading... ' : 'Choose a price'}
-            </option>
-            {prices.map((p) => (
-              <option key={p} value={p}>{p}</option>
-            ))}
-          </select>
-        </div>
+        <CustomSelect
+          options={prices}
+          value={price}
+          onChange={setPrice}
+          placeholder={isLoading ? 'Loading...' : 'Choose a price'}
+          prefix="To $"
+          width="196px"
+        />
       </div>
 
       <div className={css.filterGroup}>
-        <label className={css.label}>Car mileage / km</label>
+        <label id="minMileage" className={css.label}>
+          Car mileage / km
+        </label>
         <div className={css.mileageWrapper}>
-          <input 
-            type="number" 
-            placeholder="From" 
+          <input
+            id="minMileage"
+            type="number"
+            min="0"
+            placeholder="From"
             value={minMileage}
-            onChange={(e) => setMinMileage(e.target.value)}
-            className={css.inputFrom} 
+            onChange={e => setMinMileage(e.target.value)}
+            className={css.inputFrom}
           />
-          <input 
-            type="number" 
-            placeholder="To" 
+          <input
+            type="number"
+            min="0"
+            placeholder="To"
             value={maxMileage}
-            onChange={(e) => setMaxMileage(e.target.value)}
-            className={css.inputTo} 
+            onChange={e => setMaxMileage(e.target.value)}
+            className={css.inputTo}
           />
         </div>
       </div>
@@ -121,11 +110,12 @@ export default function Filter({ onSearch, onClear }: FilterProps) {
         <button onClick={handleSearch} className={css.searchBtn}>
           Search
         </button>
-        <button onClick={handleClear} className={css.clearBtn}>
-          Clear filters
-        </button>
+        {hasActiveFilters && (
+          <button onClick={handleClear} className={css.clearBtn}>
+            Clear filters
+          </button>
+        )}
       </div>
-
-    </div>
+    </section>
   );
 }

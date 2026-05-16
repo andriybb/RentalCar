@@ -1,0 +1,103 @@
+.selectContainer {
+  position: relative;
+}
+
+.selectHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white);
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--main);
+  margin-bottom: 4px;
+  transition: all 0.3s ease-in-out;
+}
+.selectHeader:hover,
+.selectHeader:focus {
+  border: 1px solid var(--light-blue);
+  box-shadow: 0px 2px 12px var(--light-blue);
+}
+.placeholder {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+}
+
+.selectedText {
+  color: var(--main);
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.arrowUp {
+  transform: rotate(180deg);
+}
+.listWrapper {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-color: var(--white);
+  border-radius: 12px;
+  z-index: 10;
+  box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.02);
+}
+/* СТИЛІ САМОГО СПИСКУ */
+.optionsList {
+  margin: 0;
+  padding: 12px 16px;
+  list-style: none;
+  max-height: 272px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.optionsList::-webkit-scrollbar {
+  display: none;
+}
+
+.optionItem {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--gray);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.optionItem:hover {
+  color: var(--main);
+}
+
+.activeOption {
+  color: var(--main);
+}
+
+/* --- КАСТОМНИЙ СКРОЛБАР  --- */
+
+.customScrollbar {
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  right: 8px;
+  width: 8px;
+  pointer-events: none;
+}
+
+.customThumb {
+  width: 100%;
+  background-color: var(--gray-light);
+  border-radius: 10px;
+}

@@ -14,104 +14,115 @@
 }
 
 .label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #8a8a89;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: var(--gray);
 }
 
-/* --- Стилі для селектів --- */
 .selectWrapper {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
-/* Робимо кастомну стрілочку через background */
-.selectWrapper::after {
-  content: '';
+.dropdownIcon {
   position: absolute;
-  right: 18px;
+  right: 14px;
   top: 50%;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7.5L10 12.5L15 7.5' stroke='%23121417' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  pointer-events: none; /* Щоб клік проходив крізь стрілочку на сам select */
+  pointer-events: none;
 }
 
 .selectBrand {
-  appearance: none; /* Прибираємо стандартну стрілочку браузера */
+  appearance: none;
   -webkit-appearance: none;
   background-color: var(--white);
   border: none;
-  border-radius: 14px;
-  padding: 14px 18px;
-  padding-right: 48px; /* Місце під нашу кастомну стрілочку */
+  border-radius: 12px;
+  padding: 12px 16px;
+  padding-right: 48px;
   font-size: 16px;
   font-family: inherit;
-  color: #121417;
+  color: var(--main);
   font-weight: 500;
   outline: none;
   cursor: pointer;
   width: 204px;
+  height: 44px;
 }
 .selectPrice {
-  appearance: none; /* Прибираємо стандартну стрілочку браузера */
+  appearance: none;
   -webkit-appearance: none;
   background-color: var(--white);
   border: none;
-  border-radius: 14px;
-  padding: 14px 18px;
-  padding-right: 48px; /* Місце під нашу кастомну стрілочку */
+  border-radius: 12px;
+  padding: 12px 16px;
+  padding-right: 48px;
   font-size: 16px;
   font-family: inherit;
-  color: #121417;
+  color: var(--main);
   font-weight: 500;
   outline: none;
   cursor: pointer;
   width: 196px;
+  height: 44px;
 }
-/* --- Стилі для здвоєного інпуту Пробігу --- */
+
 .mileageWrapper {
   display: flex;
 }
 
+.inputFrom::-webkit-outer-spin-button,
+.inputFrom::-webkit-inner-spin-button,
+.inputTo::-webkit-outer-spin-button,
+.inputTo::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 .inputFrom,
 .inputTo {
+  transition: all 0.3s ease-in-out;
   background-color: var(--white);
   border: none;
-  padding: 14px 24px;
+  padding: 12px 24px;
   font-size: 16px;
   font-family: inherit;
-  color: #121417;
+  color: var(--main);
   font-weight: 500;
   outline: none;
   width: 160px;
+  height: 44px;
 }
 
 .inputFrom::placeholder,
 .inputTo::placeholder {
-  color: #121417;
+  color: var(--main);
 }
 
-/* Заокруглюємо тільки ліві кути для "From" */
 .inputFrom {
   border-radius: 14px 0 0 14px;
-  border-right: 1px solid rgba(138, 138, 137, 0.2); /* Вертикальна лінія між ними */
+  border-right: 1px solid rgba(138, 138, 137, 0.2);
 }
 
-/* Заокруглюємо тільки праві кути для "To" */
 .inputTo {
   border-radius: 0 14px 14px 0;
 }
 
+.inputFrom:hover,
+.inputTo:hover,
+.inputFrom:focus-within,
+.inputTo:focus-within {
+  border: 1px solid var(--light-blue);
+  box-shadow: 0px 2px 12px var(--light-blue);
+}
 /* --- Кнопки --- */
 .buttonsWrapper {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 8px;
   align-items: center;
-  margin-top: 26px; /* Щоб вирівняти кнопки по одній лінії з інпутами (компенсація висоти label) */
+  margin-top: 24px;
 }
 
 .searchBtn {
@@ -119,15 +130,16 @@
   align-items: center;
   width: 156px;
   height: 44px;
-  background-color: var(--light-blue); /* Синій (або замініть на #00BFFF для блакитного з макета) */
-  color: #ffffff;
+  background-color: var(--light-blue);
   border: none;
   border-radius: 14px;
-  font-size: 14px;
-  font-weight: 600;
-  font-family: inherit;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease-in-out;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--white);
 }
 
 .searchBtn:hover,
@@ -143,6 +155,7 @@
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .clearBtn:hover,

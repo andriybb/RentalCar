@@ -12,7 +12,7 @@ export default async function CarDetailsPage({ params }: { params: Promise<{ id:
   }
 
   return (
-    <div className={css.pageContainer}>
+    <section className={css.carPersonalContainer}>
       <div className={css.leftColumn}>
         <div className={css.imageCar}>
           <Image
@@ -108,6 +108,6 @@ export default async function CarDetailsPage({ params }: { params: Promise<{ id:
         </ul>
       </div>
    
-    </div>
+    </section>
   );
 }

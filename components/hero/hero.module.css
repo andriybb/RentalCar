@@ -40,6 +40,7 @@
   line-height: 125%;
   padding: 12px 88px;
   color: var(--white);
+  transition: all 0.3s ease-in-out;
 }
 .heroButton:hover {
   background-color: var(--dark-blue);

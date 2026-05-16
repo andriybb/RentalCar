@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚗 Застосунок для оренди автомобілів (Car Rental Application)
 
-## Getting Started
+Сучасний та адаптивний веб-застосунок для пошуку та оренди автомобілів, створений за допомогою
+Next.js та TypeScript. Цей проєкт розроблено в рамках технічного завдання.
 
-First, run the development server:
+🔗 **[Live Demo / Задеплоєна версія](https://rental-car-ten-omega.vercel.app)**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📖 Про проєкт
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Застосунок Car Rental забезпечує зручний користувацький досвід для пошуку ідеального автомобіля. Він
+містить детальний каталог із розширеною фільтрацією, пагінацію формату "Load More" для плавного
+підвантаження даних, а також окремі сторінки для кожного автомобіля з інтегрованою формою оренди.
+Інтерфейс реалізовано з точністю до пікселя (Pixel Perfect) згідно з наданим макетом у Figma.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Основний функціонал
 
-## Learn More
+- **Головна сторінка:** Приваблива hero-секція з основним закликом до дії (Call-to-Action).
+- **Каталог автомобілів:**
+  - Динамічне отримання даних про автомобілі з бекенду (REST API).
+  - Розширена фільтрація за брендом, ціною (за 1 годину) та пробігом (від і до).
+  - Пагінація формату "Load More", реалізована за допомогою хука `useInfiniteQuery`.
+  - Функціонал додавання в улюблене (збереження в локальному стані).
+  - Кастомні UI-елементи (випадаючі списки, скролбари) для повної відповідності дизайну.
+- **Сторінка деталей автомобіля:**
+  - Відкривається в новій вкладці браузера.
+  - Відображає повну інформацію про характеристики авто та умови оренди.
+  - Повністю робоча форма бронювання зі спливаючими сповіщеннями (toast) про успішну відправку.
+- **Оптимізація зображень:** Використання компонента `<Image />` від Next.js для правильного
+  масштабування та кращої продуктивності.
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Технологічний стек
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Фреймворк:** [Next.js](https://nextjs.org/) (App Router)
+- **Мова:** [TypeScript](https://www.typescriptlang.org/)
+- **Управління станом та запитами:** [TanStack Query](https://tanstack.com/query/latest)
+  (`useInfiniteQuery`)
+- **Стилізація:** CSS Modules
+- **Сповіщення:** React Hot Toast
+- **Деплой:** Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🚀 Як запустити проєкт локально
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Дотримуйтесь цих інструкцій, щоб налаштувати та запустити проєкт на своєму комп'ютері.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Вимоги
+
+- Node.js (версія v18 або вище)
+- npm або yarn
+
+### Встановлення
+
+1. Склонуйте репозиторій:
+   ```bash
+   git clone https://github.com/andriybb/RentalCar
+   ```
+2. Перейдіть до папки з проєктом:
+   ```bash
+   cd RentalCar
+   ```
+3. Встановіть залежності:
+   ```bash
+   npm install
+   ```
+4. Запустіть сервер для розробки:
+   ```bash
+   npm run dev
+   ```
+5. Відкрийте
+   ```bash
+   http://localhost:3000
+   ```
+   у вашому браузері, щоб переглянути застосунок
+
+### 👤 Автор: Андрій Баранович ([Linkedin](www.linkedin.com/in/andriy-baranovich))

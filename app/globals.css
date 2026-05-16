@@ -1,7 +1,7 @@
 @import url('../css/reset.css');
 @import url('../css/base.css');
 .customToast {
-  background-color: var(--dark-blue) !important;
+  background-color: var(--light-blue) !important;
   color: #ffffff !important;
   border-radius: 12px !important;
   padding: 16px 24px !important;

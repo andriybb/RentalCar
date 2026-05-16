@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Manrope, Inter } from 'next/font/google';
+import { Manrope } from 'next/font/google';
 import './globals.css';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import Header from '@/components/header/header';
@@ -12,12 +12,6 @@ const manrope = Manrope({
   display: 'swap',
 });
 
-const inter = Inter({
-  subsets: ['latin', 'latin-ext', 'cyrillic', 'cyrillic-ext'],
-  weight: ['500'],
-  variable: '--second-family',
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: 'Rental Car',
@@ -30,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
+    <html lang="en" className={`${manrope.variable}`} data-scroll-behavior="smooth">
       <body>
         <Toaster
           position="top-right"

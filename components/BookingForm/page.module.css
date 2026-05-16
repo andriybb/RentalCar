@@ -9,6 +9,7 @@
   border-radius: 10px;
   padding: 32px;
   background-color: var(--white);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 .formHeader {
   display: flex;
@@ -60,12 +61,14 @@
   background: transparent;
 }
 .inputWrapper:hover,
-.inputWrapper:focus-within {
+.inputWrapper:focus {
   border: 1px solid var(--light-blue);
+  outline: none;
 }
 .commentWrapper:hover,
-.commentWrapper:focus-within {
+.commentWrapper:focus {
   border: 1px solid var(--light-blue);
+  outline: none;
 }
 
 .commentWrapper {
@@ -93,15 +96,18 @@
 
 .sendingButton {
   background-color: var(--light-blue);
-  color: #fff;
   border-radius: 12px;
-  padding-block: 12px;
-  padding-inline: 51px;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--white);
   width: 100%;
   height: 44px;
   cursor: pointer;
   margin: 0 auto;
   margin-top: 24px;
+  transition: all 0.3s ease-in-out;
 }
 .sendingButton:hover,
 .sendingButton:focus {
