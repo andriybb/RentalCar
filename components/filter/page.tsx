@@ -40,7 +40,7 @@ export default function Filter({ onSearch, onClear }: FilterProps) {
   };
 
   const brands = filterData?.brands || [];
-  const prices = filterData ? generatePriceOptions(filterData.price.min, filterData.price.max) : [];
+  const prices = filterData ? generatePriceOptions(filterData.rentalPrice.min, filterData.rentalPrice.max) : [];
 
   const handleSearch = () => {
     onSearch({ brand, price, minMileage, maxMileage });
