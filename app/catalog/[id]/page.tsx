@@ -2,6 +2,26 @@ import Image from 'next/image';
 import { getCarById } from '@/services/carsApi';
 import css from './page.module.css';
 import BookingForm from '@/components/BookingForm/page';
+import { Metadata } from 'next';
+
+type Props = {
+  params: { carId: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  try {
+    const car = await getCarById(params.carId);
+
+    return {
+      title: `${car.brand} ${car.model}`,
+      description: `Rent a ${car.brand} ${car.model} (${car.year}) for $${car.rentalPrice}/hour. ${car.description}`,
+    };
+  } catch {
+    return {
+      title: 'Car Details',
+    };
+  }
+}
 
 export default async function CarDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
@@ -61,38 +81,37 @@ export default async function CarDetailsPage({ params }: { params: Promise<{ id:
           </ul>
           <ul className={css.section}>
             <h3 className={css.InfoListTitle}>Car Specifications:</h3>
-            
-              <li className={css.ListObject}>
-                <svg className={css.locationIcon} width="16" height="16">
-                  <use href="/icons.svg#icon-calendar"></use>
-                </svg>{' '}
-                Year: {car.year}
-              </li>
-              <li className={css.ListObject}>
-                <svg className={css.locationIcon} width="16" height="16">
-                  <use href="/icons.svg#icon-car"></use>
-                </svg>{' '}
-                Type: {car.type}
-              </li>
-              <li className={css.ListObject}>
-                <svg className={css.locationIcon} width="16" height="16">
-                  <use href="/icons.svg#icon-gasstation"></use>
-                </svg>{' '}
-                Fuel Consumption: {car.fuelConsumption}
-              </li>
-              <li className={css.ListObject}>
-                <svg className={css.locationIcon} width="16" height="16">
-                  <use href="/icons.svg#icon-mechanics"></use>
-                </svg>{' '}
-                Engine: {car.engine}
-              </li>
-              <li className={css.ListObject}>
-                <svg className={css.locationIcon} width="16" height="16">
-                  <use href="/icons.svg#icon-Property-1ph_road-horizon"></use>
-                </svg>{' '}
-                Mileage: {car.mileage} km
-              </li>
-            
+
+            <li className={css.ListObject}>
+              <svg className={css.locationIcon} width="16" height="16">
+                <use href="/icons.svg#icon-calendar"></use>
+              </svg>{' '}
+              Year: {car.year}
+            </li>
+            <li className={css.ListObject}>
+              <svg className={css.locationIcon} width="16" height="16">
+                <use href="/icons.svg#icon-car"></use>
+              </svg>{' '}
+              Type: {car.type}
+            </li>
+            <li className={css.ListObject}>
+              <svg className={css.locationIcon} width="16" height="16">
+                <use href="/icons.svg#icon-gasstation"></use>
+              </svg>{' '}
+              Fuel Consumption: {car.fuelConsumption}
+            </li>
+            <li className={css.ListObject}>
+              <svg className={css.locationIcon} width="16" height="16">
+                <use href="/icons.svg#icon-mechanics"></use>
+              </svg>{' '}
+              Engine: {car.engine}
+            </li>
+            <li className={css.ListObject}>
+              <svg className={css.locationIcon} width="16" height="16">
+                <use href="/icons.svg#icon-Property-1ph_road-horizon"></use>
+              </svg>{' '}
+              Mileage: {car.mileage} km
+            </li>
           </ul>
           <ul className={css.section}>
             <h3 className={css.InfoListTitle}>Features:</h3>
@@ -107,7 +126,6 @@ export default async function CarDetailsPage({ params }: { params: Promise<{ id:
           </ul>
         </ul>
       </div>
-   
     </section>
   );
 }

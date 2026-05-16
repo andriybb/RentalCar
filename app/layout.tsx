@@ -12,10 +12,14 @@ const manrope = Manrope({
   display: 'swap',
 });
 
-
 export const metadata: Metadata = {
-  title: 'Rental Car',
-  description: 'Car rental service',
+  title: {
+    default: 'Car Rental | Rent the Perfect Car',
+    template: '%s | Car Rental',
+  },
+  description:
+    'Find and rent the perfect car for your journey. Explore our wide selection of vehicles with the best prices and conditions.',
+  keywords: ['car rental', 'rent a car', 'auto rental', 'vehicle rental'],
 };
 
 export default function RootLayout({
@@ -34,7 +38,8 @@ export default function RootLayout({
         />
         <TanStackProvider>
           <Header />
-          {children} </TanStackProvider>
+          {children}{' '}
+        </TanStackProvider>
       </body>
     </html>
   );
