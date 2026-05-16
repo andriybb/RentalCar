@@ -2,11 +2,11 @@
 
 import css from './page.module.css';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Loader } from '../loader/page';
 import { Car, CarsFilters, getCars } from '@/services/carsApi';
 import Link from 'next/link';
-import { useInfiniteQuery } from '@tanstack/react-query'; // Імпортуємо хук
+import { useInfiniteQuery } from '@tanstack/react-query'; 
 import toast from 'react-hot-toast';
 import Filter, { FilterValues } from '../filter/page';
 
@@ -37,7 +37,7 @@ export default function CarCard() {
     const formattedFilters: CarsFilters = {};
 
     if (newFilters.brand) formattedFilters.brand = newFilters.brand;
-    if (newFilters.price) formattedFilters.rentalPrice = Number(newFilters.price);
+    if (newFilters.price) formattedFilters.price = Number(newFilters.price);
     if (newFilters.minMileage) formattedFilters.minMileage = Number(newFilters.minMileage);
     if (newFilters.maxMileage) formattedFilters.maxMileage = Number(newFilters.maxMileage);
 
@@ -47,10 +47,12 @@ export default function CarCard() {
   const handleClearFilters = () => {
     setActiveFilters({});
   };
-  if (isError) {
-    toast.error('Failed to load cars');
-    return <div>Error loading cars. Please try again.</div>;
-  }
+  useEffect(() => {
+    if (isError) {
+        toast.error('Failed to load cars');
+    }
+}, [isError]);
+
 
   return (
     <>

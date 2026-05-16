@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getCarFilters } from '@/services/carsApi';
 
-import css from './page.module.css'; // Або Filter.module.css (залежить від вашої назви)
+import css from './page.module.css'; 
 import CustomSelect from '../customSelect/page';
 
 export interface FilterValues {
@@ -40,7 +40,7 @@ export default function Filter({ onSearch, onClear }: FilterProps) {
   };
 
   const brands = filterData?.brands || [];
-  const prices = filterData ? generatePriceOptions(filterData.rentalPrice.min, filterData.rentalPrice.max) : [];
+  const prices = filterData ? generatePriceOptions(filterData.price.min, filterData.price.max) : [];
 
   const handleSearch = () => {
     onSearch({ brand, price, minMileage, maxMileage });

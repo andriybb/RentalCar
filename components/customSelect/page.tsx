@@ -23,7 +23,6 @@ export default function CustomSelect({
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
-  // Додаємо рефи та стани для кастомного скролбару
   const listRef = useRef<HTMLUListElement>(null);
   const [thumbHeight, setThumbHeight] = useState(0);
   const [thumbTop, setThumbTop] = useState(0);
@@ -39,13 +38,10 @@ export default function CustomSelect({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Вираховуємо розмір повзунка, коли список відкривається
   useEffect(() => {
     if (isOpen && listRef.current) {
       const { clientHeight, scrollHeight } = listRef.current;
-      // Показуємо скролбар тільки якщо контенту більше, ніж висота списку
       if (scrollHeight > clientHeight) {
-        // Трек має відступи по 12px зверху і знизу, тому його висота = clientHeight - 24
         const trackHeight = clientHeight - 24;
         const newThumbHeight = (clientHeight / scrollHeight) * trackHeight;
         setThumbHeight(newThumbHeight);
@@ -54,16 +50,13 @@ export default function CustomSelect({
       }
     }
   }, [isOpen, options]);
-
-  // Функція, яка рухає повзунок під час скролу
   const handleScroll = () => {
     if (listRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = listRef.current;
       const trackHeight = clientHeight - 24;
 
-      // Визначаємо відсоток прокрутки
       const scrollRatio = scrollTop / (scrollHeight - clientHeight);
-      // Рахуємо нову позицію для повзунка
+
       const newThumbTop = scrollRatio * (trackHeight - thumbHeight);
 
       setThumbTop(newThumbTop);
