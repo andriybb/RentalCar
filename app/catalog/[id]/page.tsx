@@ -5,12 +5,13 @@ import BookingForm from '@/components/BookingForm/page';
 import { Metadata } from 'next';
 
 type Props = {
-  params: { carId: string };
+  params: { id: string };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    const car = await getCarById(params.carId);
+    const resolvedParams = await params;
+    const car = await getCarById(resolvedParams.id);
 
     return {
       title: `${car.brand} ${car.model}`,
