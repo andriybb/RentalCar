@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: 'Car Rental',
     images: [
       {
-        url: '/public/hero-image.jpg', 
+        url: '/hero-image.jpg', 
         width: 1440,
         height: 696,
       },
