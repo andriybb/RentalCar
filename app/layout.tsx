@@ -20,6 +20,21 @@ export const metadata: Metadata = {
   description:
     'Find and rent the perfect car for your journey. Explore our wide selection of vehicles with the best prices and conditions.',
   keywords: ['car rental', 'rent a car', 'auto rental', 'vehicle rental'],
+  openGraph: {
+    title: "Car Rental | Rent the Perfect Car",
+    description: "Find and rent the perfect car for your journey.", // Можете змінити опис
+    url: 'https://rental-car-ten-omega.vercel.app',
+    siteName: 'Car Rental',
+    images: [
+      {
+        url: '/public/hero-image.jpg', 
+        width: 1440,
+        height: 696,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
